@@ -8,7 +8,7 @@ namespace CanaryEmailsService.Core
         Task SendEmail(string to, string subject, string body);
     }
 
-    public class EmailSender: IEmailSender
+    public class EmailSender : IEmailSender
     {
         private ILogger<EmailSender> _logger;
         private IConfiguration _configuration;
@@ -21,8 +21,8 @@ namespace CanaryEmailsService.Core
 
         public async Task SendEmail(string to, string subject, string body)
         {
-            string fromEmail = _configuration.GetSection("FromEmail").Value;
-            string password = _configuration.GetSection("EmailPass").Value;
+            string fromEmail = _configuration["FromEmail"];
+            string password = _configuration["EmailPass"];
             string smtpServer = "smtp.gmail.com";
             int smtpPort = 587;
 

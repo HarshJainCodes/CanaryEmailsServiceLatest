@@ -1,0 +1,6 @@
+@CanaryEmailsService_HostAddress = http://localhost:5240
+
+GET {{CanaryEmailsService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

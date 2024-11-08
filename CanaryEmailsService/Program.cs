@@ -3,15 +3,18 @@ using CanaryEmailsService.Contracts;
 using CanaryEmailsService.Core;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
+using Microsoft.ApplicationInsights.Extensibility;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+string insKey = builder.Configuration["InstrumentationKey"];
+builder.Services.AddApplicationInsightsTelemetry(insKey);
 
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<SendEmailConsumer>();

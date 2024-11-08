@@ -23,7 +23,7 @@ builder.Services.AddMassTransit(x =>
 {
     x.UsingAzureServiceBus((context, config) =>
     {
-        string azureServiceBusConnString = builder.Configuration.GetConnectionString("AzureBusEmail");
+        string azureServiceBusConnString = builder.Configuration["AzureBusEmail"];
         config.Host(azureServiceBusConnString);
         config.Message<ISendEmailMessage>(configurator => { });
         config.SubscriptionEndpoint<ISendEmailMessage>("scheduler_email_new", 
